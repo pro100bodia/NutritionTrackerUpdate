@@ -1,0 +1,11 @@
+.greeting{
+    margin: 300px auto 0;
+    text-align: center;
+    color: #eee;
+}
+.greeting h1, .greeting .h1{
+    font-size: 72px;
+}
+.greeting i{
+    font-size: 28px;
+}
