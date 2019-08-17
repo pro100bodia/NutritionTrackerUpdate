@@ -1,0 +1,8 @@
+/.idea/
+/target
+/src/main/resources/application.properties
+*.iml
+
+!/logs/
+/src
+pom.xml
