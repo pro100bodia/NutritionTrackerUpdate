@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
   <meta charset="utf-8">
@@ -11,10 +11,15 @@
 
   <title>Login Page 2 | Creative - Bootstrap 3 Responsive Admin Template</title>
 
+    <!--  jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!-- Bootstrap CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
   <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <!-- bootstrap select-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.2/js/bootstrap-select.min.js"
+            type="text/javascript"></script>
   <!--external css-->
   <!-- font icon -->
   <link href="/css/elegant-icons-style.css" rel="stylesheet" />
@@ -39,12 +44,15 @@
 </head>
 
 <body class="login-img3-body">
-
+<div th:replace="fragments/common :: header"></div>
   <div class="container">
-
     <div class="greeting">
-      <h1>Welcome to Nutrition Tracker</h1>
-      <i>Create your optimal diet</i>
+        <h1 th:text="#{message.welcome}"></h1>
+        <i th:text="#{message.slogan}"></i><br>
+        <span>
+        <a class="custom_a" href="/login" th:text="#{moveto.log_in}"></a>
+        <a class="custom_a" href="/signin" th:text="#{moveto.sign_in}"></a>
+      </span>
     </div>
   </div>
 

@@ -9,3 +9,11 @@
 .greeting i{
     font-size: 28px;
 }
+.dark-bg{
+    background-color: #2d6f58;
+}
+.custom_a{
+    font-size: 21px;
+    color: #fff;
+    text-decoration: underline;
+}
