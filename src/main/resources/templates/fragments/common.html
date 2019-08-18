@@ -14,17 +14,21 @@
         <div class="top-nav notification-row">
             <!-- notificatoin dropdown start-->
             <ul class="nav pull-right top-menu">
-
+                <script src="/js/languages.js" type="text/javascript"></script>
                 <!-- language selection start-->
                 <li>
-                    <script src="js/languages.js" type="text/javascript"></script>
-                    <select class="selectpicker" data-width="fit">
-                        <option>
-                            <span class="flag-icon flag-icon-us"></span>
+                    <select id="lan" name="language" onchange="changeLanguage();">
+                        <option value="en"><span class="flag-icon flag-icon-gb"></span>
                             English
                         </option>
-                        <!--                          <option  data-content='<span class="flag-icon flag-icon-uk"></span> Ukrainian'>Ukrainian</option>-->
+                        <option value="uk"><span class="flag-icon flag-icon-ua"></span>
+                            Ukrainian
+                        </option>
+                        <option value="ru"><span class="flag-icon flag-icon-ru"></span>
+                            Russian
+                        </option>
                     </select>
+
                 </li>
                 <!-- language selection end-->
 
