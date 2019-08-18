@@ -17,3 +17,12 @@
     color: #fff;
     text-decoration: underline;
 }
+.login-form{
+    background: rgba(213, 215, 222, 0.54);
+}
+.btn-primary{
+    background-color: #478756;
+}
+.btn-info{
+    background-color: #49b863;
+}
