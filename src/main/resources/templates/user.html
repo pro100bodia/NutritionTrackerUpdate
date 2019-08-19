@@ -8,8 +8,11 @@
 <body class="login-img3-body">
 <div th:replace="fragments/common :: header"></div>
 <div class="container">
-
-    Hello user
+    <div class="form-login">
+<!--        <div th:if="${user}">-->
+            <span class="username" th:text ="${user.name}"></span>
+<!--        </div>-->
+    </div>
 
     </div>
 </div>

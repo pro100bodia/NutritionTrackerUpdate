@@ -38,7 +38,10 @@
                             <span class="profile-ava">
                                 <img alt="" src="img/avatar1_small.jpg">
                             </span>
-                        <span class="username">Jenifer Smith</span>
+                        <span th:if="${user}">
+                            <span class="username" th:text ="${user.name}"></span>
+                        </span>
+
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
