@@ -21,16 +21,17 @@ public class User {
     private String name;
     private String password;
     private Date birthdate;
+
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+
     private double height;
     private double weight;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "char")
     private LifeStyle lifeStyle;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "varchar(6)")
     private Role role;
 
     public long getId() {
