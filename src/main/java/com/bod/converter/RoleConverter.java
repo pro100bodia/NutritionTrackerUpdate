@@ -6,6 +6,6 @@ import java.beans.PropertyEditorSupport;
 
 public class RoleConverter extends PropertyEditorSupport {
     public void setAsText(final String text) throws IllegalArgumentException {
-        setValue(Role.valueOf(text));
+        setValue(Role.valueOf(text.toUpperCase()));
     }
 }

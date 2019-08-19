@@ -15,22 +15,22 @@
 <!--            name-->
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_profile"></i></span>
-                <input name="name" type="text" class="form-control" th:placeholder="#{login.user}" autofocus>
+                <input name="name" type="text" class="form-control" th:placeholder="#{login.user}" autofocus required>
             </div>
 <!--            password-->
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <input name="password" type="password" class="form-control" th:placeholder="#{login.password}">
+                <input name="password" type="password" class="form-control" th:placeholder="#{login.password}" required>
             </div>
 <!--            birthdate-->
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_calendar"></i></span>
-                <input name="birthdate" type="date" class="form-control" th:placeholder="#{client.birthdate}">
+                <input name="birthdate" type="date" class="form-control" th:placeholder="#{client.birthdate}"  required>
             </div>
 <!--            gender-->
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <select name="gender" class="form-control" th:placeholder="#{client.gender}">
+                <select name="gender" class="form-control"  required>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
@@ -38,17 +38,17 @@
 <!--            height-->
             <div class="input-group">
                 <span class="input-group-addon"><i class="arrow_up-down_alt"></i></span>
-                <input name="height" type="number" class="form-control" th:placeholder="#{client.height}">
+                <input name="height" type="number" class="form-control" th:placeholder="#{client.height}" required>
             </div>
 <!--            weight-->
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <input name="weight" type="number" class="form-control" th:placeholder="#{client.weight}">
+                <input name="weight" type="number" class="form-control" th:placeholder="#{client.weight}"  required>
             </div>
 <!--            lifeStyle-->
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <select name="lifeStyle" class="form-control" th:placeholder="#{client.lifestyle}">
+                <select name="lifeStyle" class="form-control"  required>
                     <option value="M">Minimal</option>
                     <option value="L">Lite</option>
                     <option value="A">Average</option>
@@ -59,9 +59,10 @@
 <!--            role-->
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                <select name="role" class="form-control">
+                <select name="role" class="form-control" required>
                     <option th:value="#{client.role}" th:text="#{client.role}"></option>
                     <option th:value="#{client.role.user}" th:text="#{client.role.user}"></option>
+                    <option th:value="#{client.role.doctor}" th:text="#{client.role.doctor}"></option>
                     <option value="DOCTOR"></option>
                 </select>
             </div>

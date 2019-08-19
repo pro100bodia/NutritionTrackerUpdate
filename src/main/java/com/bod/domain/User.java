@@ -26,11 +26,11 @@ public class User {
     private double weight;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "smallint")
+    @Column(columnDefinition = "char")
     private LifeStyle lifeStyle;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "smallint")
+    @Column(columnDefinition = "varchar(6)")
     private Role role;
 
     public long getId() {
@@ -119,5 +119,22 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", foodRecords=" + foodRecords +
+                ", deflectionRecords=" + deflectionRecords +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", birthdate=" + birthdate +
+                ", gender=" + gender +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", lifeStyle=" + lifeStyle +
+                ", role=" + role +
+                '}';
     }
 }

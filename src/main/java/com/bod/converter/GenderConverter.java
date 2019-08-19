@@ -6,6 +6,6 @@ import java.beans.PropertyEditorSupport;
 
 public class GenderConverter extends PropertyEditorSupport {
     public void setAsText(final String text) throws IllegalArgumentException {
-        setValue(Gender.valueOf(text));
+        setValue(Gender.valueOf(text.toUpperCase()));
     }
 }

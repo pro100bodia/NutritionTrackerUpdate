@@ -8,6 +8,7 @@ import com.bod.domain.LifeStyle;
 import com.bod.domain.Role;
 import com.bod.domain.User;
 import com.bod.repository.UserRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -31,6 +32,9 @@ public class UserController {
     @PostMapping("/signin")
     public String addUser(User user){
         User userFromDb = userRepository.findByName(user.getName());
+
+        Logger LOG = Logger.getLogger(LifeStyle.class);
+        LOG.info(user);
 
         if(userFromDb != null){
             return "signin";
