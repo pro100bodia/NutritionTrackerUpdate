@@ -9,9 +9,35 @@
 <div th:replace="fragments/common :: header"></div>
 <div class="container">
 
-    Hello doctor
+    <form action="/logout" method="post">
+        <input type="submit" value="Log Out">
+    </form>
 
-</div>
+    <table>
+        <thead>
+        <td><span th:text="client.name"></span></td>
+        <td><span th:text="food.calories"></span></td>
+        <td><span th:text="food.proteins"></span></td>
+        <td><span th:text="food.fats"></span></td>
+        <td><span th:text="food.carbohydrates"></span></td>
+        <td><span th:text="food.fav"></span></td>
+        </thead>
+
+        <tr th:each="record : $">
+            <td style="padding-right: 4px;">
+                <span th:text="${record.name}"></span></td>
+            <td style="padding-right: 4px;">
+                <span th:text="${record.averageDeflection.calories}"></span></td>
+            <td style="padding-right: 4px;">
+                <span th:text="${record.averageDeflection.protein}"></span></td>
+            <td style="padding-right: 4px;">
+                <span th:text="${record.averageDeflection.fat}"></span></td>
+            <td style="padding-right: 4px;">
+                <span th:text="${record.averageDeflection.carbohydrates}"></span></td>
+            <td style="padding-right: 4px;">
+                <span th:text="${record.favFood}"></span></td>
+        </tr>
+    </table>
 </div>
 
 
