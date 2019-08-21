@@ -15,29 +15,38 @@
 
     <table>
         <thead>
-        <td><span th:text="client.name"></span></td>
-        <td><span th:text="food.calories"></span></td>
-        <td><span th:text="food.proteins"></span></td>
-        <td><span th:text="food.fats"></span></td>
-        <td><span th:text="food.carbohydrates"></span></td>
-        <td><span th:text="food.fav"></span></td>
+            <td><span th:text="client.name"></span></td>
+            <td><span th:text="food.calories"></span></td>
+            <td><span th:text="food.proteins"></span></td>
+            <td><span th:text="food.fats"></span></td>
+            <td><span th:text="food.carbohydrates"></span></td>
+            <td><span th:text="food.fav"></span></td>
         </thead>
 
-        <tr th:each="record : $">
-            <td style="padding-right: 4px;">
-                <span th:text="${record.name}"></span></td>
-            <td style="padding-right: 4px;">
-                <span th:text="${record.averageDeflection.calories}"></span></td>
-            <td style="padding-right: 4px;">
-                <span th:text="${record.averageDeflection.protein}"></span></td>
-            <td style="padding-right: 4px;">
-                <span th:text="${record.averageDeflection.fat}"></span></td>
-            <td style="padding-right: 4px;">
-                <span th:text="${record.averageDeflection.carbohydrates}"></span></td>
-            <td style="padding-right: 4px;">
-                <span th:text="${record.favFood}"></span></td>
-        </tr>
+        <tbody>
+            <tr th:each="record : ${statPage}">
+                <td style="padding-right: 4px;">
+                    <span th:text="${record.name}"></span></td>
+                <td style="padding-right: 4px;">
+                    <span th:text="${record.averageDeflection.calories}"></span></td>
+                <td style="padding-right: 4px;">
+                    <span th:text="${record.averageDeflection.protein}"></span></td>
+                <td style="padding-right: 4px;">
+                    <span th:text="${record.averageDeflection.fat}"></span></td>
+                <td style="padding-right: 4px;">
+                    <span th:text="${record.averageDeflection.carbohydrates}"></span></td>
+                <td style="padding-right: 4px;">
+                    <span th:text="${record.favFood}"></span></td>
+            </tr>
+        </tbody>
     </table>
+
+<!--    <div th:if="statPage.totalPages > 0" class="pagination"-->
+<!--         th:each="pageNumber : ${pageNumbers}">-->
+<!--        <a th:href="@{/doctor(size=${statPage.size}, page=${pageNumber})}"-->
+<!--           th:text="${pageNumber}"-->
+<!--           th:class="${pageNumber==statPage.number+1} ? active"></a>-->
+<!--    </div>-->
 </div>
 
 

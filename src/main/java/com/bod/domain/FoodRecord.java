@@ -12,11 +12,12 @@ public class FoodRecord {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name="foodRecords")
+    @JoinColumn(name="food_records")
     private User clientHist;
 
     @OneToMany(fetch = FetchType.LAZY,
     mappedBy = "fd")
+    @Column(name="food_id")
     private List<Food> foodId;
 
     private double amount;

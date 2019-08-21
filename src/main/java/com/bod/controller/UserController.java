@@ -32,7 +32,7 @@ public class UserController {
 
         User user = userRepository.findByName(username);
 
-        model.addAttribute(user);
+        model.addAttribute("user", user);
         return "user";
     }
 

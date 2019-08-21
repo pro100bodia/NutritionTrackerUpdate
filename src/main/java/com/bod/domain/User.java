@@ -12,6 +12,7 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY,
     mappedBy = "clientHist")
+    @Column(name="food_records")
     private List<FoodRecord> foodRecords;
 
     @OneToMany(fetch = FetchType.LAZY,

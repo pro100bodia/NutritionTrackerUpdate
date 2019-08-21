@@ -8,10 +8,60 @@
 <body class="login-img3-body">
 <div th:replace="fragments/common :: header"></div>
 <div class="container">
-    <div class="form-login">
-<!--        <div th:if="${user}">-->
-            <span class="username" th:text ="${user.name}"></span>
-<!--        </div>-->
+    <div class="greeting">
+        <form method="post" class="login-form" th:action="@{/updateUser}">
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#user-gender").val($("#user-gender-val").val());
+                    $("#user-lifestyle").val($("#user-lifestyle-val").val());
+                });
+
+            </script>
+            <div class="login-wrap">
+                <p class="login-img"></p>
+                <!--            name-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_profile"></i></span>
+                    <input name="name" type="text" class="form-control" th:value="${user.name}" disabled>
+                </div>
+                <!--            birthdate-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_calendar"></i></span>
+                    <input name="birthdate" type="date" class="form-control" th:value="${user.birthdate}"  disabled>
+                </div>
+                <!--            gender-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <input id="user-gender-val" type="hidden" th:value="${user.gender}" />
+                    <select id="user-gender" name="gender" class="form-control"  disabled>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </select>
+                </div>
+                <!--            height-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="arrow_up-down_alt"></i></span>
+                    <input name="height" type="number" class="form-control" th:value="${user.height}" disabled>
+                </div>
+                <!--            weight-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <input name="weight" type="number" class="form-control" th:value="${user.weight}"  disabled>
+                </div>
+                <!--            lifeStyle-->
+                <div class="input-group">
+                    <input id="user-lifestyle-val" type="hidden" th:value="${user.lifeStyle}" />
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <select id="user-lifestyle"  name="lifeStyle" class="form-control"  disabled>
+                        <option value="M">Minimal</option>
+                        <option value="L">Lite</option>
+                        <option value="A">Average</option>
+                        <option value="H">Hard</option>
+                        <option value="E">Extreme</option>
+                    </select>
+                </div>
+            </div>
+        </form>
     </div>
 
     </div>
