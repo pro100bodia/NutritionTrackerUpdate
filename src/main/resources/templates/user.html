@@ -9,6 +9,7 @@
 <div th:replace="fragments/common :: header"></div>
 <div class="container">
     <div class="greeting">
+        <!-- User data -->
         <form method="post" class="login-form" th:action="@{/updateUser}">
             <script type="text/javascript">
                 $(document).ready(function(){
@@ -63,7 +64,27 @@
             </div>
         </form>
     </div>
+    <!-- End User data -->
 
+    <!-- Select food form -->
+    <div class="container" id="add-food-form">
+        <div class="row">
+            <div class="col-sm-4">
+                <select id="food_selection" name="food_selection" >
+                    <option th:each="foodItem : ${foodItems}" th:value="${foodItem.id}" th:text="${foodItem.name}"></option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <a href="/nutrition_tracker/custom_food" th:text="#{food.add_custom}"></a>
+                <button class="btn btn-default" onclick="addToPlate(food_selection.value, food_amount.value)" th:text="#{food.add}"></button>
+            </div>
+            <div class="col-sm-4">
+                <span th:text="#{food.amount}"></span>
+                <input id="food_amount" min="1" name="food_amount" type="number" value="1">
+            </div>
+        </div>
+    </div>
+    <!-- End select food form -->
     </div>
 </div>
 

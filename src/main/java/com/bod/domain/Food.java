@@ -1,15 +1,16 @@
 package com.bod.domain;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class Food implements Serializable {
+public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @ManyToOne
-    @JoinColumn(name="foodId")
-    private FoodRecord fd;
+    private long id;
+
 
     private String name;
     private long number;
@@ -18,12 +19,12 @@ public class Food implements Serializable {
     private long fats;
     private long carbohydrates;
 
-    public FoodRecord getFd() {
-        return fd;
+    public long getId() {
+        return id;
     }
 
-    public void setFd(FoodRecord fd) {
-        this.fd = fd;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -72,5 +73,18 @@ public class Food implements Serializable {
 
     public void setCarbohydrates(long carbohydrates) {
         this.carbohydrates = carbohydrates;
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", number=" + number +
+                ", calories=" + calories +
+                ", protein=" + protein +
+                ", fats=" + fats +
+                ", carbohydrates=" + carbohydrates +
+                '}';
     }
 }

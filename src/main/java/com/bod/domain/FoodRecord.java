@@ -16,21 +16,13 @@ public class FoodRecord {
     private User clientHist;
 
     @OneToMany(fetch = FetchType.LAZY,
-    mappedBy = "fd")
+    mappedBy = "id")
     @Column(name="food_id")
     private List<Food> foodId;
 
     private double amount;
 
     private LocalDate date;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public User getClientHist() {
         return clientHist;
