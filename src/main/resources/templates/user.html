@@ -117,11 +117,12 @@
         </thead>
         <tbody>
             <tr th:each="foodItem: ${foodList}">
-                <td th:text="${foodItem.name}"></td>
-                <td th:text="${foodItem.calories}"></td>
-                <td th:text="${foodItem.protein}"></td>
-                <td th:text="${foodItem.fats}"></td>
-                <td th:text="${foodItem.carbohydrates}"></td>
+                <td th:text="${foodItem.food.name}"></td>
+                <td th:text="${foodItem.food.calories}"></td>
+                <td th:text="${foodItem.food.protein}"></td>
+                <td th:text="${foodItem.food.fats}"></td>
+                <td th:text="${foodItem.food.carbohydrates}"></td>
+                <td th:text="${foodItem.amount}"></td>
             </tr>
         </tbody>
     </table>
