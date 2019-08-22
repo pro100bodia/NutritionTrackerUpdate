@@ -10,7 +10,7 @@
 <div class="container">
     <div class="greeting">
         <!-- User data -->
-        <form method="post" class="login-form" th:action="@{/updateUser}">
+        <form class="login-form" method="post" th:action="@{/updateUser}">
             <script type="text/javascript">
                 $(document).ready(function(){
                     $("#user-gender").val($("#user-gender-val").val());
@@ -23,18 +23,18 @@
                 <!--            name-->
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_profile"></i></span>
-                    <input name="name" type="text" class="form-control" th:value="${user.name}" disabled>
+                    <input class="form-control" disabled name="name" th:value="${user.name}" type="text">
                 </div>
                 <!--            birthdate-->
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_calendar"></i></span>
-                    <input name="birthdate" type="date" class="form-control" th:value="${user.birthdate}"  disabled>
+                    <input class="form-control" disabled name="birthdate" th:value="${user.birthdate}"  type="date">
                 </div>
                 <!--            gender-->
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                    <input id="user-gender-val" type="hidden" th:value="${user.gender}" />
-                    <select id="user-gender" name="gender" class="form-control"  disabled>
+                    <input id="user-gender-val" th:value="${user.gender}" type="hidden" />
+                    <select class="form-control" disabled id="user-gender"  name="gender">
                         <option value="MALE">Male</option>
                         <option value="FEMALE">Female</option>
                     </select>
@@ -42,18 +42,18 @@
                 <!--            height-->
                 <div class="input-group">
                     <span class="input-group-addon"><i class="arrow_up-down_alt"></i></span>
-                    <input name="height" type="number" class="form-control" th:value="${user.height}" disabled>
+                    <input class="form-control" disabled name="height" th:value="${user.height}" type="number">
                 </div>
                 <!--            weight-->
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                    <input name="weight" type="number" class="form-control" th:value="${user.weight}"  disabled>
+                    <input class="form-control" disabled name="weight" th:value="${user.weight}"  type="number">
                 </div>
                 <!--            lifeStyle-->
                 <div class="input-group">
-                    <input id="user-lifestyle-val" type="hidden" th:value="${user.lifeStyle}" />
+                    <input id="user-lifestyle-val" th:value="${user.lifeStyle}" type="hidden" />
                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                    <select id="user-lifestyle"  name="lifeStyle" class="form-control"  disabled>
+                    <select class="form-control"  disabled id="user-lifestyle"  name="lifeStyle">
                         <option value="M">Minimal</option>
                         <option value="L">Lite</option>
                         <option value="A">Average</option>
@@ -67,11 +67,13 @@
     <!-- End User data -->
 
     <!-- Select food form -->
+    <script type="text/javascript" src="/js/clientActions.js"></script>
+
     <div class="container" id="add-food-form">
         <div class="row">
             <div class="col-sm-4">
                 <select id="food_selection" name="food_selection" >
-                    <option th:each="foodItem : ${foodItems}" th:value="${foodItem.id}" th:text="${foodItem.name}"></option>
+                    <option th:each="foodItem : ${foodItems}" th:text="${foodItem.name}" th:value="${foodItem.id}"></option>
                 </select>
             </div>
             <div class="col-sm-4">
@@ -85,6 +87,37 @@
         </div>
     </div>
     <!-- End select food form -->
+
+    <!-- Client`s plate -->
+    <a name="calc"></a>
+    <div class="column">
+        <div class="row">
+            <div class="col-sm-3">
+                <h3 th:text="#{food.your_plate}"></h3>
+            </div>
+            <div class="col-sm-6"></div>
+            <div class="col-sm-3">
+                <button class="btn btn-default" onclick="caculateNorm()" th:text="#{menu.calc}"></button>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="plate_table">
+        <thead>
+        <td th:text="#{food.name}" ></td>
+        <td th:text="#{food.calories}"></td>
+        <td th:text="#{food.proteins}" ></td>
+        <td th:text="#{food.fats}" ></td>
+        <td th:text="#{food.carbohydrates}" ></td>
+        <td th:text="#{food.number}" ></td>
+        <td th:text="#{food.amount}" ></td>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <!-- End Client`s plate -->
     </div>
 </div>
 

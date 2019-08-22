@@ -10,8 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -42,11 +41,27 @@ public class UserController {
         model.addAttribute("user", user);
 
         List<Food> foodItems = foodRepository.findAll();
-        for(Food foodItem : foodItems){
-            LOG.info(foodItem);
-        }
         model.addAttribute("foodItems", foodItems);
         return "user";
+    }
+
+    @RequestMapping(value = "/fill_plate", consumes = "application/json")
+//    @ResponseStatus(value= HttpStatus.OK)
+    public @ResponseBody String addToPlate(
+            @RequestParam("type") long foodId,
+            @RequestParam("type") double amount){
+        Food food = foodRepository.findById(foodId).orElse(null);
+        LOG.info("Food in fill_plate mapping: " + food);
+
+        return "<tr>" +
+                "<td>" + food.getName() + "</td>" +
+                "<td>" + food.getCalories() + "</td>" +
+                "<td>" + food.getProtein() + "</td>" +
+                "<td>" + food.getFats() + "</td>" +
+                "<td>" + food.getCarbohydrates() + "</td>" +
+                "<td>" + food.getNumber() + "</td>" +
+                "<td>" + amount + "</td>" +
+                "</tr>";
     }
 
     @GetMapping("/signin")
