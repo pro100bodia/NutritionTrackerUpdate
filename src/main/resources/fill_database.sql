@@ -107,14 +107,14 @@ CREATE TABLE IF NOT EXISTS `food` (
   `protein` bigint(20) NOT NULL,
   `fats` bigint(20) NOT NULL,
   `carbohydrates` bigint(20) NOT NULL,
-  PRIMARY KEY (`food_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `food`
 --
 
-INSERT INTO `food` (`food_id`, `name`, `number`, `calories`, `protein`, `fats`, `carbohydrates`) VALUES
+INSERT INTO `food` (`id`, `name`, `number`, `calories`, `protein`, `fats`, `carbohydrates`) VALUES
 (0, 'pear', 100, 42, 0, 0, 11),
 (1, 'cherry', 100, 52, 1, 1, 11),
 (2, 'bird-cherry', 100, 50, 1, 0, 12),
@@ -256,7 +256,7 @@ ALTER TABLE `deflection_record`
 -- Constraints for table `food_history`
 --
 ALTER TABLE `food_history`
-  ADD CONSTRAINT `food_history_ibfk_1` FOREIGN KEY (`foodId`) REFERENCES `food` (`food_id`),
+  ADD CONSTRAINT `food_history_ibfk_1` FOREIGN KEY (`foodId`) REFERENCES `food` (`id`),
   ADD CONSTRAINT `FK3908jhdq6gah71rlfobgj3cyq` FOREIGN KEY (`food_records`) REFERENCES `user` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -71,26 +71,28 @@
 
     <div class="container" id="add-food-form">
         <div class="row">
-            <div class="col-sm-4">
-                <select id="food_selection" name="food_selection" >
-                    <option th:each="foodItem : ${foodItems}" th:text="${foodItem.name}" th:value="${foodItem.id}"></option>
-                </select>
-            </div>
-            <div class="col-sm-4">
-                <a href="/nutrition_tracker/custom_food" th:text="#{food.add_custom}"></a>
-                <button class="btn btn-default" onclick="addToPlate(food_selection.value, food_amount.value)" th:text="#{food.add}"></button>
-            </div>
-            <div class="col-sm-4">
-                <span th:text="#{food.amount}"></span>
-                <input id="food_amount" min="1" name="food_amount" type="number" value="1">
-            </div>
+            <form th:action="@{/user}" method="post">
+                <div class="col-sm-4">
+                    <select id="food_selection" name="food_selection" >
+                        <option th:each="foodItem : ${foodItems}" th:text="${foodItem.name}" th:value="${foodItem.id}"></option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <a href="/nutrition_tracker/custom_food" th:text="#{food.add_custom}"></a>
+                    <button class="btn btn-default" th:text="#{food.add}"></button>
+                </div>
+                <div class="col-sm-4">
+                    <span th:text="#{food.amount}"></span>
+                    <input id="food_amount" min="1" name="food_amount" type="number" value="1">
+                </div>
+            </form>
         </div>
     </div>
     <!-- End select food form -->
 
     <!-- Client`s plate -->
     <a name="calc"></a>
-    <div class="column">
+    <div class="column"  style="color: #009a86">
         <div class="row">
             <div class="col-sm-3">
                 <h3 th:text="#{food.your_plate}"></h3>
@@ -103,7 +105,7 @@
     </div>
 
 
-    <table class="plate_table">
+    <table class="plate_table" style="color: #009a86">
         <thead>
         <td th:text="#{food.name}" ></td>
         <td th:text="#{food.calories}"></td>
@@ -114,10 +116,33 @@
         <td th:text="#{food.amount}" ></td>
         </thead>
         <tbody>
-
+            <tr th:each="foodItem: ${foodList}">
+                <td th:text="${foodItem.name}"></td>
+                <td th:text="${foodItem.calories}"></td>
+                <td th:text="${foodItem.protein}"></td>
+                <td th:text="${foodItem.fats}"></td>
+                <td th:text="${foodItem.carbohydrates}"></td>
+            </tr>
         </tbody>
     </table>
     <!-- End Client`s plate -->
+
+<!--    <table id="deflection">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <td th:text="#{food.calories}" ></td>-->
+<!--            <td th:text="#{food.proteins}" ></td>-->
+<!--            <td th:text="#{food.fats}" ></td>-->
+<!--            <td th:text="#{food.carbohydrates}" ></td>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tr id="def_value">-->
+<!--            <td th:text="${def.calories}"></td>-->
+<!--            <td th:text="${def.proteins}"></td>-->
+<!--            <td th:text="${def.fats}"></td>-->
+<!--            <td th:text="${def.carbohydrates}"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
     </div>
 </div>
 
