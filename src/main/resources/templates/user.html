@@ -99,7 +99,10 @@
             </div>
             <div class="col-sm-6"></div>
             <div class="col-sm-3">
-                <button class="btn btn-default" onclick="caculateNorm()" th:text="#{menu.calc}"></button>
+                <form th:action="@{/calc}">
+                    <input name="username" type="hidden" th:value="${user.name}" />
+                    <button type="submit" class="btn btn-default" onclick="caculateNorm()" th:text="#{menu.calc}"></button>
+                </form>
             </div>
         </div>
     </div>
@@ -128,22 +131,22 @@
     </table>
     <!-- End Client`s plate -->
 
-<!--    <table id="deflection">-->
-<!--        <thead>-->
-<!--        <tr>-->
-<!--            <td th:text="#{food.calories}" ></td>-->
-<!--            <td th:text="#{food.proteins}" ></td>-->
-<!--            <td th:text="#{food.fats}" ></td>-->
-<!--            <td th:text="#{food.carbohydrates}" ></td>-->
-<!--        </tr>-->
-<!--        </thead>-->
-<!--        <tr id="def_value">-->
-<!--            <td th:text="${def.calories}"></td>-->
-<!--            <td th:text="${def.proteins}"></td>-->
-<!--            <td th:text="${def.fats}"></td>-->
-<!--            <td th:text="${def.carbohydrates}"></td>-->
-<!--        </tr>-->
-<!--    </table>-->
+    <table id="deflection">
+        <thead>
+        <tr>
+            <td th:text="#{food.calories}" ></td>
+            <td th:text="#{food.proteins}" ></td>
+            <td th:text="#{food.fats}" ></td>
+            <td th:text="#{food.carbohydrates}" ></td>
+        </tr>
+        </thead>
+        <tr id="def_value">
+            <td th:text="${def.calories}"></td>
+            <td th:text="${def.protein}"></td>
+            <td th:text="${def.fats}"></td>
+            <td th:text="${def.carbohydrates}"></td>
+        </tr>
+    </table>
     </div>
 </div>
 

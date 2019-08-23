@@ -1,5 +1,6 @@
 package com.bod.controller;
 
+import com.bod.domain.Coeficients;
 import com.bod.domain.DeflectionRecord;
 import com.bod.domain.Food;
 import com.bod.domain.User;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,6 +32,64 @@ public class UserController {
     FoodRepository foodRepository;
 
     private static final List<PlateItemDto> foodList = new LinkedList<>();
+    private static final DeflectionRecord deflection = new DeflectionRecord();
+
+    @GetMapping("/calc")
+    private String calculateNorm(@RequestParam("username")String username, Model model) {
+        User user = userRepository.findByName(username);
+
+        model.addAttribute("user", user);
+
+        LOG.info("Calculating eaten nutritive value");
+
+        double calories = 0.0, proteins = 0.0, fats = 0.0, carbohydrates = 0.0;
+        for (PlateItemDto foodItem : foodList) {
+            calories += foodItem.getFood().getCalories() * foodItem.getAmount();
+            proteins += foodItem.getFood().getProtein() * foodItem.getAmount();
+            fats += foodItem.getFood().getFats() * foodItem.getAmount();
+            carbohydrates += foodItem.getFood().getCarbohydrates() * foodItem.getAmount();
+        }
+        DeflectionRecord eaten = new DeflectionRecord();
+
+        eaten.setCalories(calories);
+        eaten.setProtein(proteins);
+        eaten.setFats(fats);
+        eaten.setCarbohydrates(carbohydrates);
+
+        LOG.info("Daily nutritive value is: " + eaten);
+
+        LOG.info("Calculating client`s norm");
+        LOG.info("Getting coefs from database");
+
+        //get coeficients
+        List<Coeficients> coefsList = new ArrayList<>();
+
+        double []coefs = new double [4];
+        for(Coeficients coeficient : coefsList){
+            coefs[coeficient.getId()] = coeficient.getValByGender(user.getGender());
+        }
+
+        calories = (coefs[0] + coefs[1] * user.getWeight() +
+                coefs[2] * user.getHeight() +
+                coefs[3] * (System.currentTimeMillis() - user.getBirthdate().getTime()) / 3.154e+10) *
+                user.getLifeStyle().getValue();
+
+        proteins = carbohydrates = calories / 4;
+        fats = calories / 9;
+
+        deflection.setCalories(eaten.getCalories() - calories);
+        deflection.setProtein(eaten.getProtein() - proteins);
+        deflection.setFats(eaten.getFats() - fats);
+        deflection.setCarbohydrates(eaten.getCarbohydrates() - carbohydrates);
+
+
+        LOG.info(deflection);
+        model.addAttribute("def", deflection);
+
+        foodList.clear();
+
+        return "redirect:/user";
+    }
 
     @PostMapping("/user")
     public String getFood(@RequestParam("food_selection") long foodId,
@@ -60,68 +120,15 @@ public class UserController {
 
         List<Food> foodItems = foodRepository.findAll();
         model.addAttribute("foodItems", foodItems);
+        model.addAttribute("def", deflection);
 
-        DeflectionRecord norm = caluclateNorm();
-        model.addAttribute("norm", norm);
         return "user";
     }
 
     @Autowired
     CoefRepository coefRepository;
 
-    private DeflectionRecord caluclateNorm() {
-        LOG.info("Calculating eaten nutritive value");
 
-        double calories = 0.0, proteins = 0.0, fats = 0.0, carbohydrates = 0.0;
-        for (PlateItemDto foodItem : foodList) {
-            calories += foodItem.getFood().getCalories() * foodItem.getAmount();
-            proteins += foodItem.getFood().getProtein() * foodItem.getAmount();
-            fats += foodItem.getFood().getFats() * foodItem.getAmount();
-            carbohydrates += foodItem.getFood().getCarbohydrates() * foodItem.getAmount();
-        }
-        DeflectionRecord eaten = new DeflectionRecord();
-
-        eaten.setCalories(calories);
-        eaten.setProtein(proteins);
-        eaten.setFats(fats);
-        eaten.setCarbohydrates(carbohydrates);
-
-        LOG.info("Daily nutritive value is: " + eaten);
-
-        LOG.info("Calculating client`s norm");
-        LOG.info("Getting coefs from database");
-
-        //get coeficients
-        double[] coefs = new CoefsService().getCoefs(client.getGender());
-
-//        LifeStyle lifeStyle = new ClientFacade().cacheLifeStyle(
-                (String) req.getServletContext().getAttribute("lifeStyle"));
-
-        calories = (coefs[0] + coefs[1] * (Double) req.getServletContext().getAttribute("weight") +
-                coefs[2] * (Double) req.getServletContext().getAttribute("height") +
-                coefs[3] * (Integer) req.getServletContext().getAttribute("age")) *
-                lifeStyle.getValue();
-
-        proteins = carbohydrates = calories / 4;
-        fats = calories / 9;
-
-        NutritiveValue norm = new NutritiveValue(calories, proteins, fats, carbohydrates);
-
-        NutritiveValue deflection = eaten.subtract(norm);
-
-        //write deflection
-        DeflectionFacade deflectionFacade = new DeflectionFacade();
-        deflectionFacade.writeDeflection(deflection, client.getId());
-
-        //writing the plate
-        DailyFacade dailyFacade = new DailyFacade();
-        dailyFacade.writeToFoodHistory(dailyRation, client.getId());
-        //cleaning the plate
-        dailyRation.getFoodMap().clear();
-        LOG.info("Client`s plate size in the end: " + client.getDailyRation().getFoodMap().size());
-
-        return null;
-    }
 
     @GetMapping("/user")
     public String getContent(Model model){
@@ -141,7 +148,7 @@ public class UserController {
 
         List<Food> foodItems = foodRepository.findAll();
         model.addAttribute("foodItems", foodItems);
-
+        model.addAttribute("def", deflection);
 
         return "user";
     }

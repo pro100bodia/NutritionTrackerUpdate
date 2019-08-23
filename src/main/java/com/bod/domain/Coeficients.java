@@ -29,4 +29,8 @@ public class Coeficients {
     public double getWomen() {
         return women;
     }
+
+    public double getValByGender(Gender gender){
+        return gender.equals(Gender.MALE) ?  getmen() :  getWomen();
+    }
 }

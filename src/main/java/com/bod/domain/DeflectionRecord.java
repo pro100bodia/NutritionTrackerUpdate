@@ -75,4 +75,17 @@ public class DeflectionRecord {
     public void setCarbohydrates(double carbohydrates) {
         this.carbohydrates = carbohydrates;
     }
+
+    @Override
+    public String toString() {
+        return "DeflectionRecord{" +
+                "id=" + id +
+                ", userDef=" + userDef +
+                ", date=" + date +
+                ", calories=" + calories +
+                ", protein=" + protein +
+                ", fats=" + fats +
+                ", carbohydrates=" + carbohydrates +
+                '}';
+    }
 }
