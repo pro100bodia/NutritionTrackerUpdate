@@ -1,10 +1,5 @@
 package com.bod.dto;
 
-import org.hibernate.annotations.Generated;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +16,10 @@ public class UserStatDto {
     private double avgFatDef;
     private double avgCrbDef;
     private String favFood;
+
+    public long getId() {
+        return id;
+    }
 
     public String getClientName() {
         return clientName;

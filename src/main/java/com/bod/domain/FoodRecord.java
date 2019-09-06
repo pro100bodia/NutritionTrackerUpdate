@@ -24,6 +24,10 @@ public class FoodRecord {
 
     private LocalDate date;
 
+    public long getId() {
+        return id;
+    }
+
     public User getClientHist() {
         return clientHist;
     }

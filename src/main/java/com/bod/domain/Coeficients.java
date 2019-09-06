@@ -22,7 +22,7 @@ public class Coeficients {
         return id;
     }
 
-    public double getmen() {
+    public double getMen() {
         return men;
     }
 
@@ -31,6 +31,6 @@ public class Coeficients {
     }
 
     public double getValByGender(Gender gender){
-        return gender.equals(Gender.MALE) ?  getmen() :  getWomen();
+        return gender.equals(Gender.MALE) ?  getMen() :  getWomen();
     }
 }

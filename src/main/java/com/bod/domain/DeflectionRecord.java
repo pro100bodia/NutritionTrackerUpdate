@@ -24,10 +24,6 @@ public class DeflectionRecord {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public User getUserDef() {
         return userDef;
     }
