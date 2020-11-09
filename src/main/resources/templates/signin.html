@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:include="fragments/common :: head">
+
+</head>
+
+<body class="login-img3-body">
+<div th:replace="fragments/common :: header"></div>
+<div class="container">
+
+    <form method="post" class="login-form" th:action="@{/signin}">
+        <div class="login-wrap">
+            <p class="login-img"></p>
+<!--            name-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_profile"></i></span>
+                <input name="name" type="text" class="form-control" th:placeholder="#{login.user}" autofocus required>
+            </div>
+<!--            password-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <input name="password" type="password" class="form-control" th:placeholder="#{login.password}" required>
+            </div>
+<!--            birthdate-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_calendar"></i></span>
+                <input name="birthdate" type="date" class="form-control" th:placeholder="#{client.birthdate}"  required>
+            </div>
+<!--            gender-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <select name="gender" class="form-control"  required>
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select>
+            </div>
+<!--            height-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="arrow_up-down_alt"></i></span>
+                <input name="height" type="number" class="form-control" th:placeholder="#{client.height}" required>
+            </div>
+<!--            weight-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <input name="weight" type="number" class="form-control" th:placeholder="#{client.weight}"  required>
+            </div>
+<!--            lifeStyle-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <select name="lifeStyle" class="form-control"  required>
+                    <option value="M">Minimal</option>
+                    <option value="L">Lite</option>
+                    <option value="A">Average</option>
+                    <option value="H">Hard</option>
+                    <option value="E">Extreme</option>
+                </select>
+            </div>
+<!--            role-->
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <select name="role" class="form-control" required>
+                    <option th:value="USER" th:text="#{client.role.user}"></option>
+                    <option th:value="DOCTOR" th:text="#{client.role.doctor}"></option>
+                </select>
+            </div>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit" th:text="#{login.login}"></button>
+            <button class="btn btn-info btn-lg btn-block" type="submit" th:text="#{moveto.sign_in}"></button>
+        </div>
+    </form>
+    <div class="text-right">
+
+    </div>
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf8"/>
+    <title>Nutrition Tracker</title>
+</head>
+<div th:fragment="header">
+    <header class="header dark-bg">
+
+        <!--logo start-->
+        <a class="logo" href="index.html">Nutrition <span class="lite">Tracker</span></a>
+        <!--logo end-->
+
+        <div class="top-nav notification-row">
+            <!-- notificatoin dropdown start-->
+            <ul class="nav pull-right top-menu">
+                <script src="/js/languages.js" type="text/javascript"></script>
+                <!-- language selection start-->
+                <li>
+                    <select id="lan" name="language" onchange="changeLanguage();">
+                        <option value="en"><span class="flag-icon flag-icon-gb"></span>
+                            English
+                        </option>
+                        <option value="uk"><span class="flag-icon flag-icon-ua"></span>
+                            Ukrainian
+                        </option>
+                        <option value="ru"><span class="flag-icon flag-icon-ru"></span>
+                            Russian
+                        </option>
+                    </select>
+
+                </li>
+                <!-- language selection end-->
+
+                <!-- user login dropdown start-->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="img/avatar1_small.jpg">
+                            </span>
+                        <span th:if="${user}">
+                            <span class="username" th:text ="${user.name}"></span>
+                        </span>
+
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li class="eborder-top">
+                            <a href="#"><i class="icon_profile"></i> My Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="icon_chat_alt"></i> Chats</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/logout}"><i class="icon_key_alt"></i> Log Out</a>
+                        </li>
+                        <li>
+                            <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
+                        </li>
+                        <li>
+                            <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- user login dropdown end -->
+            </ul>
+            <!-- notificatoin dropdown end-->
+        </div>
+    </header>
+</div>
+
+<div th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>Home | NutritionTracker</title>
+
+    <!--  jQuery-->
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <!-- Bootstrap CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- bootstrap theme -->
+    <link href="/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+    <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+    <!--external css-->
+    <!-- font icon -->
+    <link href="/css/elegant-icons-style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <!-- Custom styles -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/custom.css" rel="stylesheet" type="text/css"/>
+    <!-- flag icon-->
+    <link href="/css/flag-icon.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- =======================================================
+      Theme Name: NiceAdmin
+      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+      Author: BootstrapMade
+      Author URL: https://bootstrapmade.com
+    ======================================================= -->
+</div>
+</html>

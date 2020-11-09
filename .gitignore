@@ -3,6 +3,5 @@
 /src/main/resources/application.properties
 *.iml
 
-!/logs/
-/src
-pom.xml
+/logs/
+/src/main/resources/imgpsh_fullsize_anim.png

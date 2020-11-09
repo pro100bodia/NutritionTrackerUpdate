@@ -1,0 +1,28 @@
+.greeting{
+    margin: 300px auto 0;
+    text-align: center;
+    color: #eee;
+}
+.greeting h1, .greeting .h1{
+    font-size: 72px;
+}
+.greeting i{
+    font-size: 28px;
+}
+.dark-bg{
+    background-color: #2d6f58;
+}
+.custom_a{
+    font-size: 21px;
+    color: #fff;
+    text-decoration: underline;
+}
+.login-form{
+    background: rgba(213, 215, 222, 0.54);
+}
+.btn-primary{
+    background-color: #478756;
+}
+.btn-info{
+    background-color: #49b863;
+}

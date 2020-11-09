@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:include="fragments/common :: head">
+
+</head>
+
+<body class="login-img3-body">
+<div th:replace="fragments/common :: header"></div>
+<div class="container">
+    <div class="greeting">
+        <!-- User data -->
+        <form class="login-form" method="post" th:action="@{/updateUser}">
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#user-gender").val($("#user-gender-val").val());
+                    $("#user-lifestyle").val($("#user-lifestyle-val").val());
+                });
+
+            </script>
+            <div class="login-wrap">
+                <p class="login-img"></p>
+                <!--            name-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_profile"></i></span>
+                    <input class="form-control" disabled name="name" th:value="${user.name}" type="text">
+                </div>
+                <!--            birthdate-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_calendar"></i></span>
+                    <input class="form-control" disabled name="birthdate" th:value="${user.birthdate}"  type="date">
+                </div>
+                <!--            gender-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <input id="user-gender-val" th:value="${user.gender}" type="hidden" />
+                    <select class="form-control" disabled id="user-gender"  name="gender">
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </select>
+                </div>
+                <!--            height-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="arrow_up-down_alt"></i></span>
+                    <input class="form-control" disabled name="height" th:value="${user.height}" type="number">
+                </div>
+                <!--            weight-->
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <input class="form-control" disabled name="weight" th:value="${user.weight}"  type="number">
+                </div>
+                <!--            lifeStyle-->
+                <div class="input-group">
+                    <input id="user-lifestyle-val" th:value="${user.lifeStyle}" type="hidden" />
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <select class="form-control"  disabled id="user-lifestyle"  name="lifeStyle">
+                        <option value="M">Minimal</option>
+                        <option value="L">Lite</option>
+                        <option value="A">Average</option>
+                        <option value="H">Hard</option>
+                        <option value="E">Extreme</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- End User data -->
+
+    <!-- Select food form -->
+    <script type="text/javascript" src="/js/clientActions.js"></script>
+
+    <div class="container" id="add-food-form">
+        <div class="row">
+            <form th:action="@{/user}" method="post">
+                <div class="col-sm-4">
+                    <select id="food_selection" name="food_selection" >
+                        <option th:each="foodItem : ${foodItems}" th:text="${foodItem.name}" th:value="${foodItem.id}"></option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <a href="/nutrition_tracker/custom_food" th:text="#{food.add_custom}"></a>
+                    <button class="btn btn-default" th:text="#{food.add}"></button>
+                </div>
+                <div class="col-sm-4">
+                    <span th:text="#{food.amount}"></span>
+                    <input id="food_amount" min="1" name="food_amount" type="number" value="1">
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- End select food form -->
+
+    <!-- Client`s plate -->
+    <a name="calc"></a>
+    <div class="column"  style="color: #009a86">
+        <div class="row">
+            <div class="col-sm-3">
+                <h3 th:text="#{food.your_plate}"></h3>
+            </div>
+            <div class="col-sm-6"></div>
+            <div class="col-sm-3">
+                <form th:action="@{/calc}">
+                    <input name="username" type="hidden" th:value="${user.name}" />
+                    <button type="submit" class="btn btn-default" onclick="caculateNorm()" th:text="#{menu.calc}"></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="plate_table" style="color: #009a86">
+        <thead>
+        <td th:text="#{food.name}" ></td>
+        <td th:text="#{food.calories}"></td>
+        <td th:text="#{food.proteins}" ></td>
+        <td th:text="#{food.fats}" ></td>
+        <td th:text="#{food.carbohydrates}" ></td>
+        <td th:text="#{food.number}" ></td>
+        <td th:text="#{food.amount}" ></td>
+        </thead>
+        <tbody>
+            <tr th:each="foodItem: ${foodList}">
+                <td th:text="${foodItem.food.name}"></td>
+                <td th:text="${foodItem.food.calories}"></td>
+                <td th:text="${foodItem.food.protein}"></td>
+                <td th:text="${foodItem.food.fats}"></td>
+                <td th:text="${foodItem.food.carbohydrates}"></td>
+                <td th:text="${foodItem.amount}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- End Client`s plate -->
+
+    <table id="deflection">
+        <thead>
+        <tr>
+            <td th:text="#{food.calories}" ></td>
+            <td th:text="#{food.proteins}" ></td>
+            <td th:text="#{food.fats}" ></td>
+            <td th:text="#{food.carbohydrates}" ></td>
+        </tr>
+        </thead>
+        <tr id="def_value">
+            <td th:text="${def.calories}"></td>
+            <td th:text="${def.protein}"></td>
+            <td th:text="${def.fats}"></td>
+            <td th:text="${def.carbohydrates}"></td>
+        </tr>
+    </table>
+    </div>
+</div>
+
+
+</body>
+
+</html>

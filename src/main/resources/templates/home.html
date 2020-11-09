@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
+<head th:include="fragments/common :: head">
+
+</head>
+
+<body class="login-img3-body">
+<div th:replace="fragments/common :: header"></div>
+  <div class="container">
+    <div class="greeting">
+        <h1 th:text="#{message.welcome}"></h1>
+        <i th:text="#{message.slogan}"></i><br>
+        <span>
+        <a class="custom_a" href="/login" th:text="#{moveto.log_in}"></a>
+        <a class="custom_a" href="/signin" th:text="#{moveto.sign_in}"></a>
+        <a class="custom_a" href="/user" th:text="User"></a>
+      </span>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
